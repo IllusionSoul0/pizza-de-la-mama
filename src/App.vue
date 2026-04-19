@@ -4,7 +4,13 @@ import Navigation from "./components/Navigation.vue";
 
 <template>
   <Navigation :route="$route.fullPath"></Navigation>
-  <RouterView />
+  <router-view v-slot="{ Component, route }">
+    <Transition name="fade" mode="out-in">
+      <div :key="route.name">
+        <component :is="Component"></component>
+      </div>
+    </Transition>
+  </router-view>
 </template>
 
 <style scoped></style>
