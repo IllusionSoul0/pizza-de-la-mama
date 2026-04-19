@@ -19,6 +19,7 @@ const currentPage = computed(() => {
       <RouterLink to="/" :style="currentPage('/')">Acceuil</RouterLink>
       <RouterLink to="/menu" :style="currentPage('/menu')">Menu</RouterLink>
       <RouterLink to="/cart" :style="currentPage('/cart')">Panier</RouterLink>
+      <RouterLink to="/admin" :style="currentPage('/admin')">Admin</RouterLink>
     </nav>
   </header>
 </template>
