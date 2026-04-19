@@ -1,9 +1,13 @@
 <script setup>
 import Navigation from "./components/Navigation.vue";
 import { ref, provide } from "vue";
+
 const cart = ref([])
+const orders = ref([])
 
 provide('cart', cart)
+provide('orders', orders)
+
 </script>
 
 <template>
