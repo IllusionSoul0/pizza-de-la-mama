@@ -29,6 +29,8 @@ function addToCart(dish) {
     cart.value.push({ ...dish, quantity: 1 });
   }
 
+  localStorage.setItem("cart", JSON.stringify(cart.value));
+
   message.value = dish.name + " ajouté !";
   showToast.value = true;
 

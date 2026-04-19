@@ -1,13 +1,24 @@
 <script setup>
 import Navigation from "./components/Navigation.vue";
-import { ref, provide } from "vue";
+import { ref, provide, onMounted } from "vue";
 
-const cart = ref([])
-const orders = ref([])
+const cart = ref([]);
+const orders = ref([]);
 
-provide('cart', cart)
-provide('orders', orders)
+onMounted(() => {
+  const savedCart = localStorage.getItem("cart");
+  const savedOrders = localStorage.getItem("orders");
 
+  if (savedCart) {
+    cart.value = JSON.parse(savedCart);
+  }
+  if (savedOrders) {
+    orders.value = JSON.parse(savedOrders);
+  }
+});
+
+provide("cart", cart);
+provide("orders", orders);
 </script>
 
 <template>

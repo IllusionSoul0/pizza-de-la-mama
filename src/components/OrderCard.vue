@@ -4,7 +4,7 @@
 
     <p v-for="dish in order.dishs">{{ dish.name }} x{{ dish.quantity }}</p>
 
-    <button v-if="!order.ready" @click="order.ready = true">Marquer prête</button>
+    <button v-if="!order.ready" @click="emit('setReady', order)">Marquer prête</button>
 
     <p v-else>Prête</p>
   </div>
@@ -17,4 +17,6 @@ const props = defineProps({
     required: true,
   },
 });
+
+const emit = defineEmits(["setReady"]);
 </script>

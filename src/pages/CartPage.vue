@@ -30,6 +30,7 @@ const total = ref(cart.value.reduce((sum, dish) => (sum += dish.cost * dish.quan
 watch(
   cart,
   () => {
+    localStorage.setItem("cart", JSON.stringify(cart.value));
     total.value = cart.value.reduce((sum, dish) => (sum += dish.cost * dish.quantity), 0);
   },
   { deep: true },
@@ -50,6 +51,7 @@ function order() {
     dishs: [...cart.value],
     ready: false,
   });
+  localStorage.setItem("orders", JSON.stringify(orders.value));
   cart.value = [];
   message.value = "La commande a été validée";
   showToast.value = true;
