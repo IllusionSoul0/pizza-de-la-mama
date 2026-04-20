@@ -52,7 +52,7 @@ function order() {
     }, 2000);
     return;
   }
-  orders.value.push({
+  orders.value.unshift({
     id: Date.now(),
     dishs: [...cart.value],
     ready: false,

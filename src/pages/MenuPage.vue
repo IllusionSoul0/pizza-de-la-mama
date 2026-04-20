@@ -1,9 +1,12 @@
 <template>
   <main>
     <h1 class="title">Notre Menu</h1>
-    <DishItem v-for="dish in menu" :key="dish.id" :dish="dish" @addToCart="addToCart">
-      <span v-if="getDishQuantity(dish.id) > 0">Dans le panier : {{ getDishQuantity(dish.id) }}</span>
-    </DishItem>
+
+    <div class="menu-grid">
+      <DishItem v-for="dish in menu" :key="dish.id" :dish="dish" @addToCart="addToCart">
+        <span v-if="getDishQuantity(dish.id) > 0" class="cart-badge">Dans le panier : {{ getDishQuantity(dish.id) }}</span>
+      </DishItem>
+    </div>
 
     <Toast v-if="showToast" :message="message" />
   </main>
@@ -44,3 +47,25 @@ function getDishQuantity(id) {
   return item ? item.quantity : 0;
 }
 </script>
+
+<style>
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.cart-badge {
+  display: inline-block;
+  margin-top: 10px;
+
+  background: #dbeafe;
+  color: #1e3a8a;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+</style>
