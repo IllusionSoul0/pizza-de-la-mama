@@ -1,38 +1,166 @@
-# frontend
+# Pizza de la Mama – Gestion d’un Restaurant en Ligne
 
-This template should help get you started developing with Vue 3 in Vite.
+## Présentation
 
-## Recommended IDE Setup
+Ce projet est une application réalisée avec **Vue.js 3** dans le cadre d’un TP.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+L’objectif est de créer un site de gestion d’un restaurant en ligne permettant :
 
-## Recommended Browser Setup
+- de consulter le menu
+- d’ajouter des plats au panier
+- de passer une commande
+- de gérer les commandes côté administrateur
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+### Groupe
 
-## Customize configuration
+- Maxime CHAINTREAU
+- Mathis DULLIN-GUIAS
+- Nathan DUBREUIL
+- Landry PIHOUR
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+# Fonctionnalités
 
-```sh
-npm install
+## Accueil
+
+- Présentation du restaurant
+- Bouton d’accès au menu
+
+## Menu
+
+- Liste des plats disponibles
+- Image, nom, description, prix
+- Bouton **Ajouter au panier**
+- Toast de confirmation
+- Affichage du nombre déjà présent dans le panier
+
+## Panier
+
+- Liste des plats ajoutés
+- Modifier quantité (+ / -)
+- Calcul automatique du total
+- Saisie obligatoire du nom client
+- Validation de commande
+
+## Gestion des commandes
+
+- Liste des commandes passées
+- Nom du client
+- Détail des plats commandés
+- Marquer une commande comme prête
+
+---
+
+# Technologies utilisées
+
+- Vue.js 3
+- Vue Router
+- JavaScript
+- HTML / CSS
+- localStorage
+
+---
+
+# Concepts Vue.js utilisés
+
+## Components
+
+Application découpée en composants réutilisables :
+
+- DishItem.vue
+- CartItem.vue
+- OrderCard.vue
+- Toast.vue
+- Navigation.vue
+
+## Props
+
+Transmission des données entre composants.
+
+## Events / Emit
+
+Communication enfant → parent :
+
+- addToCart
+- changeAmount
+- setReady
+
+## Directives
+
+- `v-for`
+- `v-if`
+- `v-else`
+- `v-bind`
+
+## Slots
+
+Personnalisation de `DishItem.vue`.
+
+## Watchers
+
+Surveillance du panier :
+
+- calcul du total
+- sauvegarde automatique
+
+## Lifecycle Hook
+
+- `onMounted()` pour charger les données sauvegardées.
+
+## Provide / Inject
+
+Partage global :
+
+- panier
+- commandes
+
+## Vue Router
+
+Navigation entre pages :
+
+- `/`
+- `/menu`
+- `/cart`
+- `/orders`
+- `/admin`
+
+---
+
+# Sauvegarde des données
+
+Les données sont conservées via **localStorage** :
+
+- panier
+- commandes
+
+Même après rechargement de la page.
+
+---
+
+# Structure du projet
+
+```text
+src/
+|── assets/
+|    └── pizza-image
+│── components/
+│── pages/
+│── data/
+|    └── menu.js
+│── router/
+|    └── index.js
+│── App.vue
+│── main.js
 ```
 
-### Compile and Hot-Reload for Development
+---
 
-```sh
+# Lancer le projet
+
+```bash
+npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+---
