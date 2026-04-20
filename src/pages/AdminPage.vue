@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <h2>Commandes</h2>
+  <main>
+    <h1 class="title">Commandes</h1>
 
     <p v-if="orders.length === 0">Aucune commande</p>
 
     <OrderCard v-for="order in orders" :key="order.id" :order="order" @setReady="setReady"></OrderCard>
-  </div>
+  </main>
 </template>
 
 <script setup>

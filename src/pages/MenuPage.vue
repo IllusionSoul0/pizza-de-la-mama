@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h2>Notre Menu</h2>
+  <main>
+    <h1 class="title">Notre Menu</h1>
     <DishItem v-for="dish in menu" :key="dish.id" :dish="dish" @addToCart="addToCart">
       <span v-if="getDishQuantity(dish.id) > 0">Dans le panier : {{ getDishQuantity(dish.id) }}</span>
     </DishItem>
 
     <Toast v-if="showToast" :message="message" />
-  </div>
+  </main>
 </template>
 
 <script setup>

@@ -39,23 +39,57 @@ provide("orders", orders);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+p {
+  text-align: center;
+  color: #64748b;
+  font-size: 18px;
+  margin-top: 40px;
+}
+
+#app {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #bcd0ee, #ffffff);
+}
+
 nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 20px;
+
+  background: #cddefa;
+  border-bottom: 1px solid #77a3fc;
 }
 
 nav a {
-  margin: 0 0.5rem;
-  color: black;
+  margin: 0 10px;
+  color: #1e3a8a;
   text-decoration: none;
+  font-weight: 600;
+
+  padding: 6px 10px;
+  border-radius: 8px;
+
+  transition: 0.2s ease;
 }
 
 nav a:hover,
 nav a.router-link-exact-active {
-  color: crimson;
-  text-decoration: underline;
+  background: #2563eb;
+  color: white;
+}
+
+main {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  color: #1e3a8a;
+  margin: 50px 0px;
 }
 
 .fade-enter-from,

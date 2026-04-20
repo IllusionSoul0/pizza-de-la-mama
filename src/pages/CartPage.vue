@@ -1,17 +1,23 @@
 <template>
-  <div>
-    <h2>Panier</h2>
+  <main>
+    <h1 class="title">Panier</h1>
 
     <p v-if="cart.length === 0">Panier vide</p>
 
-    <CartItem v-for="dish in cart" :key="dish.id" :dish="dish" @changeAmount="changeAmount" />
+    <div v-else>
+      <div class="cart-list">
+        <CartItem v-for="dish in cart" :key="dish.id" :dish="dish" @changeAmount="changeAmount" />
+      </div>
 
-    <h3>Total : {{ total }} €</h3>
+      <div class="cart-footer">
+        <h2>Total : {{ total }} €</h2>
 
-    <button @click="order">Commander</button>
+        <button @click="order" class="order-btn">Commander</button>
+      </div>
+    </div>
 
     <Toast v-if="showToast" :message="message" />
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -69,3 +75,60 @@ function changeAmount(dish, amount) {
   }
 }
 </script>
+
+<style>
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cart-footer {
+  margin-top: 30px;
+  padding: 15px;
+
+  background: #eaf2ff;
+  border: 1px solid #b9d0ff;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cart-footer h2 {
+  font-size: 20px;
+  color: #1e3a8a;
+  margin: 0;
+}
+
+.order-btn {
+  background: #2563eb;
+  color: white;
+
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.order-btn:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+.order-btn:active {
+  transform: scale(0.97);
+}
+
+.order-btn:focus {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+</style>
