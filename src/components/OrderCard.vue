@@ -2,6 +2,8 @@
   <div class="order-card">
     <h2>Commande #{{ order.id }}</h2>
 
+    <p class="customer">Client : {{ order.customer }}</p>
+
     <div class="dish-list">
       <p v-for="dish in order.dishs">{{ dish.name }} x{{ dish.quantity }}</p>
     </div>
@@ -45,6 +47,21 @@ const emit = defineEmits(["setReady"]);
   margin-bottom: 12px;
   font-size: 20px;
   color: #1e3a8a;
+}
+
+.customer {
+  margin: 10px 0px;
+
+  display: inline-block;
+
+  background: #dbeafe;
+  color: #1e3a8a;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .dish-list {

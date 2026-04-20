@@ -9,6 +9,12 @@
         <CartItem v-for="dish in cart" :key="dish.id" :dish="dish" @changeAmount="changeAmount" />
       </div>
 
+      <div class="customer-box">
+        <label for="customerName">Nom :</label>
+
+        <input id="customerName" v-model="customerName" type="text" placeholder="Entrez votre nom" />
+      </div>
+
       <div class="cart-footer">
         <h2>Total : {{ total }} €</h2>
 
@@ -31,6 +37,8 @@ const orders = inject("orders");
 const showToast = ref(false);
 const message = ref("");
 
+const customerName = ref("");
+
 const total = ref(cart.value.reduce((sum, dish) => (sum += dish.cost * dish.quantity), 0));
 
 watch(
@@ -44,22 +52,32 @@ watch(
 
 function order() {
   if (cart.value.length === 0) {
-    message.value = "La commande est vide";
-    showToast.value = true;
-
-    setTimeout(() => {
-      showToast.value = false;
-    }, 2000);
+    show("La commande est vide");
     return;
   }
+
+  if (customerName.value.trim() === "") {
+    show("Veuillez entrer votre nom");
+    return;
+  }
+
   orders.value.unshift({
     id: Date.now(),
+    customer: customerName.value,
     dishs: [...cart.value],
     ready: false,
   });
+
   localStorage.setItem("orders", JSON.stringify(orders.value));
+
   cart.value = [];
-  message.value = "La commande a été validée";
+  customerName.value = "";
+
+  show("La commande a été validée");
+}
+
+function show(text) {
+  message.value = text;
   showToast.value = true;
 
   setTimeout(() => {
@@ -81,6 +99,36 @@ function changeAmount(dish, amount) {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.customer-box {
+  margin-top: 20px;
+  padding: 15px;
+
+  background: #eaf2ff;
+  border: 1px solid #b9d0ff;
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customer-box label {
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.customer-box input {
+  padding: 10px 12px;
+  border: 1px solid #b9d0ff;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+.customer-box input:focus {
+  border-color: #2563eb;
 }
 
 .cart-footer {
