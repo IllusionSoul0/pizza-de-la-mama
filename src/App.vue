@@ -22,14 +22,25 @@ provide("orders", orders);
 </script>
 
 <template>
-  <Navigation :route="$route.fullPath"></Navigation>
-  <router-view v-slot="{ Component, route }">
-    <Transition name="fade" mode="out-in">
-      <div :key="route.name">
-        <component :is="Component"></component>
-      </div>
-    </Transition>
-  </router-view>
+  <div>
+    <Navigation :route="$route.fullPath"></Navigation>
+
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <Component :is="Component" />
+      </transition>
+    </router-view>
+  </div>
 </template>
 
-<style scoped></style>
+<style>
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-out;
+}
+</style>
